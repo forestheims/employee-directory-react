@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/authContext';
+import './Auth.css';
 
 export default function Auth({ isSignedUp = false }) {
   const { handleSignIn, handleCreateAccount } = useAuth();
@@ -15,7 +16,7 @@ export default function Auth({ isSignedUp = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
       <input
         type="email"

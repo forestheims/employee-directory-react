@@ -10,7 +10,24 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(196, 143, 196);
+  border: dashed purple 3px;
+}
+
+a {
+  color: rgb(136, 97, 0);
+  background-color: palevioletred;
+  font-weight: 700;
+  text-decoration: none;
+  height: 24px;
+  border-radius: 20px;
+  padding: 4px;
+}
+
+a:hover {
+  background-color: paleturquoise;
 }
 
 main {

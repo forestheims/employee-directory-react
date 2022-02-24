@@ -5,6 +5,7 @@ import Auth from './views/Auth/Auth';
 import Profile from './views/Profile/Profile';
 import Home from './views/Home/Home';
 import Profiles from './views/Profiles/Profiles';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   return (

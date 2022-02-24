@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
     switch (action.type) {
       case 'signin':
         try {
-          const resp = await signInUser();
+          const resp = await signInUser(action.payload);
           setUser(resp.email);
           history.replace('/');
         } catch (error) {
@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
         }
       case 'create':
         try {
-          await signUpUser();
+          await signUpUser(action.payload);
         } catch (error) {
           throw error;
         } finally {
