@@ -1,44 +1,50 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signInUser, signOutUser, signUpUser } from '../services/auth';
+import { getUser, signInUser, signOutUser, signUpUser } from '../services/auth';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState('');
   const history = useHistory();
+  // const currentUser = getUser();
+  // console.log(currentUser);
+  const [user, dispatch] = useReducer(
+    userReducer,
+    ''
+    // currentUser ? currentUser.user.email : ''
+    // getUser() ? getUser().user.email : ''
+  );
 
-  async function userReducer(state, action) {
+  async function userReducer(user, action) {
     switch (action.type) {
       case 'signin':
         try {
-          const resp = await signInUser(action.payload);
-          setUser(resp.email);
+          // const resp = await signInUser(action.payload);
+          user = action.payload.email;
+          history.replace('/');
+        } catch (error) {
+          // throw error;
+        } finally {
+          // loading?
+        }
+      case 'create':
+        try {
+          // const resp = await signUpUser(action.payload);
+          user = action.payload.email;
           history.replace('/');
         } catch (error) {
           throw error;
         } finally {
           // loading?
-          return {};
-        }
-      case 'create':
-        try {
-          await signUpUser(action.payload);
-        } catch (error) {
-          throw error;
-        } finally {
-          // loading?
-          return {};
         }
       case 'logout':
         try {
-          await signOutUser();
-          setUser('');
+          // signOutUser();
+          user = '';
         } catch (error) {
           throw error;
         } finally {
           // loading?
-          return {};
         }
       default:
         throw new Error();
@@ -59,7 +65,6 @@ export function AuthProvider({ children }) {
 
   const contextValue = {
     user,
-    setUser,
     handleSignIn,
     handleCreateAccount,
     handleLogOut,
