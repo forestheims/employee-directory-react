@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '../../context/authContext';
+import { useProfile } from '../../context/profilesContext';
+import { createProfile, updateProfile } from '../../services/profiles';
 
 export default function AddEditProfile({ isProfile = false }) {
   const [name, setName] = useState('');
@@ -7,14 +10,31 @@ export default function AddEditProfile({ isProfile = false }) {
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('foraheims@gmail.com');
   const { user } = useAuth();
+  const { profile, setProfile } = useProfile();
+
+  useEffect(() => {
+    if (isProfile) {
+      setName(profile.name);
+      setBio(profile.bio);
+      setBirthday(profile.birthday);
+      setEmail(profile.email);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isProfile) {
+      updateProfile({ name, email, bio, birthday });
+      setProfile({ name, email, bio, birthday });
+    }
+    createProfile({ name, email, bio, birthday });
+    setProfile({ name, email, bio, birthday });
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <h2>{user}</h2>
         <label>Name:</label>
         <input
           type="text"
@@ -33,7 +53,9 @@ export default function AddEditProfile({ isProfile = false }) {
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         />
-        <button type="submit">Add / Edit Profile</button>
+        <button type="submit">
+          {isProfile ? 'Edit Profile' : 'Add Profile'}
+        </button>
       </form>
     </>
   );

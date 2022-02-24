@@ -1,16 +1,21 @@
 import { client, checkError } from './client.js';
 
-export async function getProfiles() {
-  const resp = { finishedFunction: false };
-  checkError(resp);
+export async function getProfile() {
+  const request = await client.from('profiles').select().single();
+  return checkError(request);
 }
 
-export async function createProfile({ email, name, bio, birthday }) {
-  const resp = { finishedFunction: false };
-  checkError(resp);
+export async function updateProfile({ name, email, bio, birthday }) {
+  const request = await client
+    .from('profiles')
+    .update({ name, bio, birthday })
+    .match({ email });
+  return checkError(request);
 }
 
-export async function updateProfile({ id, email, name, bio, birthday }) {
-  const resp = { finishedFunction: false };
-  checkError(resp);
+export async function createProfile({ name, email, bio, birthday }) {
+  const request = await client
+    .from('profiles')
+    .insert({ name, email, bio, birthday });
+  return checkError(request);
 }

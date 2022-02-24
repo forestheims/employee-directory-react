@@ -1,20 +1,33 @@
-import { createContext, useContext, useState, useReducer } from 'react';
-import { useHistory } from 'react-router-dom';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { getProfile } from '../services/profiles';
+import { useAuth } from './authContext';
 
-const ProfilesContext = createContext();
+const ProfileContext = createContext();
 
 export function ProfileProvider({ children }) {
-  const history = useHistory();
-  // const currentUser = getUser();
-  // console.log(currentUser);
-  const [user, dispatch] = useReducer(
-    userReducer,
-    ''
-    // currentUser ? currentUser.user.email : ''
-    // getUser() ? getUser().user.email : ''
-  );
+  const [profile, setProfile] = useState({
+    name: '',
+    email: '',
+    bio: '',
+    birthday: '',
+  });
+  const { user } = useAuth();
 
-  const contextValue = {};
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (user) {
+        try {
+          const response = await getProfile();
+          setProfile(response);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  const contextValue = { profile, setProfile };
 
   return (
     <ProfileContext.Provider value={contextValue}>

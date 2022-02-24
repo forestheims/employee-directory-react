@@ -4,7 +4,6 @@ import AddEditProfile from './views/AddEditProfile/AddEditProfile';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile/Profile';
 import Home from './views/Home/Home';
-import Profiles from './views/Profiles/Profiles';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
@@ -12,17 +11,14 @@ export default function App() {
     <BrowserRouter>
       <Layout>
         <Switch>
-          <Route path="/profile/:id/edit">
+          <Route path="/profile/edit">
             <AddEditProfile isProfile />
           </Route>
-          <Route path="/profile/:id">
-            <Profile />
-          </Route>
-          <Route path="/profile">
+          <Route path="/profile/add">
             <AddEditProfile />
           </Route>
-          <Route path="/profiles">
-            <Profiles />
+          <Route path="/profile">
+            <Profile />
           </Route>
           <Route path="/register">
             <Auth />
@@ -31,7 +27,7 @@ export default function App() {
             <Auth isSignedUp />
           </Route>
           <Route path="/">
-            <Redirect to="/profiles" />
+            <Home />
           </Route>
         </Switch>
       </Layout>

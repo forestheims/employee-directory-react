@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ACMELogo from '../../assets/ACME_Logo.jpg';
 import { useAuth } from '../../context/authContext';
+import { signOutUser } from '../../services/auth';
 
 export default function Header() {
-  const { user, handleLogOut } = useAuth();
+  const { user, setUser } = useAuth();
+
+  const handleLogout = () => {
+    signOutUser();
+    setUser('');
+  };
 
   return (
     <header>
@@ -13,7 +19,7 @@ export default function Header() {
       </a>
       <Link to="/">Home</Link>
       {user ? (
-        <button onClick={handleLogOut}>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       ) : (
         <Link to="/login">Sign In</Link>
       )}

@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
+import { signInUser, signUpUser } from '../../services/auth';
 import './Auth.css';
 
 export default function Auth({ isSignedUp = false }) {
-  const { handleSignIn, handleCreateAccount } = useAuth();
-  // move formState into a custom hook
+  const { setUser } = useAuth();
+
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignedUp) {
-      handleSignIn(formState);
+      try {
+        signInUser(formState);
+        setUser(formState.email);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
-      handleCreateAccount(formState);
+      try {
+        signUpUser(formState);
+        setUser(formState.email);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
