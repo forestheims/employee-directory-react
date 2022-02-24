@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import githubLogo from '../../assets/GitHub_Logo.png';
+import ACMELogo from '../../assets/ACME_Logo.jpg';
 import { useAuth } from '../../context/authContext';
 import { signOutUser } from '../../services/auth';
 
@@ -9,8 +9,8 @@ export default function Header() {
 
   return (
     <header>
-      <a href="https://github.com/forestheims/employee-directory-react">
-        <img src={githubLogo} alt="GitHub Logo" style={{ width: 50 }} />
+      <a href="https://villains.fandom.com/wiki/ACME">
+        <img src={ACMELogo} alt="GitHub Logo" style={{ width: 100 }} />
       </a>
       <Link to="/">Home</Link>
       {user ? (

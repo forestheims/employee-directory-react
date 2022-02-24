@@ -1,6 +1,14 @@
-.auth-form {
+form,
+.auth {
   display: flex;
+  font-weight: 700;
+  font-size: 1.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  background-color: salmon;
+  border-radius: 60px;
+  padding: 30px;
+  margin: 20px;
 }
