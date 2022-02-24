@@ -1,9 +1,10 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import AddEditProfile from './views/AddEditProfile/AddEditProfile';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile/Profile';
 import Home from './views/Home/Home';
+import Profiles from './views/Profiles/Profiles';
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
           <Route path="/profile">
             <AddEditProfile />
           </Route>
+          <Route path="/profiles">
+            <Profiles />
+          </Route>
           <Route path="/register">
             <Auth />
           </Route>
@@ -26,7 +30,7 @@ export default function App() {
             <Auth isSignedUp />
           </Route>
           <Route path="/">
-            <Home />
+            <Redirect to="/profiles" />
           </Route>
         </Switch>
       </Layout>
