@@ -13,9 +13,9 @@ export function AuthProvider({ children }) {
 }
 
 export function useAuth() {
-  const context = useContext(UserContext);
+  const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('Error: useUser needs to be called within a UserProvider');
+    throw new Error('Error: useAuth needs to be called within a AuthProvider');
   }
   return context;
 }
