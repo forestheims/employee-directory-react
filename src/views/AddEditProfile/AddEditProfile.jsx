@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { useProfile } from '../../context/profilesContext';
 import { createProfile, updateProfile } from '../../services/profiles';
@@ -10,6 +11,7 @@ export default function AddEditProfile({ isProfile = false }) {
   const [birthday, setBirthday] = useState('');
   const { user } = useAuth();
   const { profile, setProfile } = useProfile();
+  const history = useHistory();
 
   useEffect(() => {
     if (isProfile) {
@@ -24,9 +26,11 @@ export default function AddEditProfile({ isProfile = false }) {
     if (isProfile) {
       updateProfile({ name, email: user.email, bio, birthday });
       setProfile({ name, email: user.email, bio, birthday });
+      history.push('/profile');
     } else {
       createProfile({ name, email: user.email, bio, birthday });
       setProfile({ name, email: user.email, bio, birthday });
+      history.replace('/profile');
     }
   };
 
