@@ -11,15 +11,15 @@ export default function App() {
     <BrowserRouter>
       <Layout>
         <Switch>
-          <Route path="/profile/edit">
+          <PrivateRoute path="/profile/edit">
             <AddEditProfile isProfile />
-          </Route>
-          <Route path="/profile/add">
+          </PrivateRoute>
+          <PrivateRoute path="/profile/add">
             <AddEditProfile />
-          </Route>
-          <Route path="/profile">
+          </PrivateRoute>
+          <PrivateRoute path="/profile">
             <Profile />
-          </Route>
+          </PrivateRoute>
           <Route path="/register">
             <Auth />
           </Route>

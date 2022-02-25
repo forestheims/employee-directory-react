@@ -62,12 +62,12 @@ export default function Auth({ isSignedUp = false }) {
       <h3>
         {isSignedUp ? (
           <>
-            'Don't have an account yet?'{' '}
+            Don't have an account yet?
             <Link to="/register">Create Account</Link>
           </>
         ) : (
           <>
-            'Don't have an account yet?' <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </>
         )}
       </h3>
