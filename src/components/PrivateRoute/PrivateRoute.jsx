@@ -9,7 +9,7 @@ export default function PrivateRoute({ children, ...routeProps }) {
     <Route
       {...routeProps}
       render={({ location }) =>
-        user ? (
+        user.email ? (
           children
         ) : (
           <Redirect to={{ pathname: '/register', state: { from: location } }} />

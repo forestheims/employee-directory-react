@@ -15,17 +15,23 @@ export function ProfileProvider({ children }) {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if (user) {
+      if (user.email) {
         try {
           const response = await getProfile();
-          setProfile(response);
+          console.log(response);
+          setProfile({
+            name: response[0].name,
+            email: user.email,
+            bio: response[0].bio,
+            birthday: response[0].birthday,
+          });
         } catch (error) {
           console.log(error);
         }
       }
     };
     fetchProfile();
-  }, []);
+  }, [user.email]);
 
   const contextValue = { profile, setProfile };
 

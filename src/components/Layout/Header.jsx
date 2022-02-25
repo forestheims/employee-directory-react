@@ -7,9 +7,9 @@ import { signOutUser } from '../../services/auth';
 export default function Header() {
   const { user, setUser } = useAuth();
 
-  const handleLogout = () => {
-    signOutUser();
-    setUser('');
+  const handleLogout = async () => {
+    await signOutUser();
+    setUser({ email: '', id: '' });
   };
 
   return (
@@ -18,14 +18,17 @@ export default function Header() {
         <img src={ACMELogo} alt="GitHub Logo" style={{ width: 100 }} />
       </a>
       <Link to="/">Home</Link>
-      {user ? (
+      <Link to="/profile">Profile</Link>
+      <Link to="/profile/add">Add Profile</Link>
+      <Link to="/profile/edit">Edit Profile</Link>
+      {user.email ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (
         <Link to="/login">Sign In</Link>
       )}
       <h3>
-        {user
-          ? `${user} is Signed In`
+        {user.email
+          ? `${user.email} is Signed In`
           : 'Welcome. Sign in to access the directory.'}
       </h3>
     </header>

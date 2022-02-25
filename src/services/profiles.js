@@ -1,7 +1,7 @@
 import { client, checkError } from './client.js';
 
 export async function getProfile() {
-  const request = await client.from('profiles').select().single();
+  const request = await client.from('profiles').select();
   return checkError(request);
 }
 

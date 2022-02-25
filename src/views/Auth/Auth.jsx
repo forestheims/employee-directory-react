@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { signInUser, signUpUser } from '../../services/auth';
@@ -6,22 +7,25 @@ import './Auth.css';
 
 export default function Auth({ isSignedUp = false }) {
   const { setUser } = useAuth();
+  const history = useHistory();
 
   const [formState, setFormState] = useState({ email: '', password: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignedUp) {
       try {
-        signInUser(formState);
-        setUser(formState.email);
+        const resp = await signInUser(formState);
+        setUser({ email: resp.email, id: resp.id });
+        history.replace('/profile');
       } catch (error) {
         console.log(error);
       }
     } else {
       try {
-        signUpUser(formState);
-        setUser(formState.email);
+        const resp = await signUpUser(formState);
+        setUser({ email: resp.email, id: resp.id });
+        history.replace('/profile');
       } catch (error) {
         console.log(error);
       }

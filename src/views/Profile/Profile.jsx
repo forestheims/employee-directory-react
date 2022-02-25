@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProfile } from '../../context/profilesContext';
 
 export default function Profile() {
@@ -8,6 +8,7 @@ export default function Profile() {
   // while (profile.email !== '') {
   //   setComponentProfile(profile);
   // }
+  useEffect(() => {}, []);
 
   return (
     <>

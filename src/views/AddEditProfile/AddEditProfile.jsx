@@ -8,7 +8,6 @@ export default function AddEditProfile({ isProfile = false }) {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [birthday, setBirthday] = useState('');
-  const [email, setEmail] = useState('foraheims@gmail.com');
   const { user } = useAuth();
   const { profile, setProfile } = useProfile();
 
@@ -17,24 +16,25 @@ export default function AddEditProfile({ isProfile = false }) {
       setName(profile.name);
       setBio(profile.bio);
       setBirthday(profile.birthday);
-      setEmail(profile.email);
     }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isProfile) {
-      updateProfile({ name, email, bio, birthday });
-      setProfile({ name, email, bio, birthday });
+      updateProfile({ name, email: user.email, bio, birthday });
+      setProfile({ name, email: user.email, bio, birthday });
+    } else {
+      createProfile({ name, email: user.email, bio, birthday });
+      setProfile({ name, email: user.email, bio, birthday });
     }
-    createProfile({ name, email, bio, birthday });
-    setProfile({ name, email, bio, birthday });
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h2>{user}</h2>
+        <h1>{isProfile ? 'Edit Profile' : 'Create Profile'}</h1>
+        <h2>{user.email}</h2>
         <label>Name:</label>
         <input
           type="text"
