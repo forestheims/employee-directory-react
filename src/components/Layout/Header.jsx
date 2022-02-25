@@ -2,14 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ACMELogo from '../../assets/ACME_Logo.jpg';
 import { useAuth } from '../../context/authContext';
+import { useProfile } from '../../context/profilesContext';
 import { signOutUser } from '../../services/auth';
 
 export default function Header() {
   const { user, setUser } = useAuth();
+  const { setProfile } = useProfile();
 
   const handleLogout = async () => {
     await signOutUser();
     setUser({ email: '', id: '' });
+    setProfile({ email: '', name: '', bio: '', birthday: '' });
   };
 
   return (
