@@ -5,9 +5,7 @@ export default function Profile() {
 
   return (
     <>
-      {profile.name ? (
-        <></>
-      ) : (
+      {!profile.name && (
         <>
           <h1>It looks like you have not made a profile yet.</h1>
           <h2>
