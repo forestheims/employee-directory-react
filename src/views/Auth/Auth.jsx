@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { signInUser, signUpUser } from '../../services/auth';
-import './Auth.css';
+import styles from './Auth.css';
 
 export default function Auth({ isSignedUp = false }) {
   const { setUser } = useAuth();
@@ -34,7 +34,7 @@ export default function Auth({ isSignedUp = false }) {
 
   return (
     <>
-      <form className="auth" onSubmit={handleSubmit}>
+      <form className={styles.auth} onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input
           type="email"

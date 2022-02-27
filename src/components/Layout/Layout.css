@@ -18,14 +18,19 @@ header {
   align-items: center;
   justify-content: center;
   background-color: #3b434b;
-  color: #af8fcf;
+  color: #b1a7bb;
   border-bottom: #58636e solid 7px;
 }
 
 main {
-  background-image: linear-gradient(to bottom right, red, yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
+  background-image: linear-gradient(to bottom right, #5c1515, #e6c81f);
+  background-repeat: no-repeat;
 }
 
 footer {
@@ -34,8 +39,10 @@ footer {
 }
 
 footer a {
+  display: flex;
   justify-content: center;
   width: 100vw;
+  height: max-content;
 }
 
 footer a:hover {
@@ -52,7 +59,7 @@ h1 {
 
 header a {
   padding: 40px 20px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 header h3 {
@@ -63,4 +70,12 @@ header a:hover {
   display: block;
   background-color: #58636e;
   color: #df9999;
+}
+
+header a:visited {
+  color: #cc883a;
+}
+
+header a:active {
+  color: #ddc853;
 }
