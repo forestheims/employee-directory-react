@@ -9,6 +9,7 @@
   background-color: #ffe4c444;
   border-radius: 50px;
   gap: 10px;
+  text-align: center;
 }
 
 .auth button {

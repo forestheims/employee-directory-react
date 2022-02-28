@@ -35,7 +35,8 @@ export default function Auth({ isSignedUp = false }) {
   return (
     <>
       <form className={styles.auth} onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <h2>{isSignedUp ? 'Login' : 'Register'}</h2>
+        <label htmlFor="email"></label>
         <input
           type="email"
           name="email"
@@ -45,7 +46,7 @@ export default function Auth({ isSignedUp = false }) {
             setFormState({ ...formState, email: e.target.value })
           }
         ></input>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password"></label>
         <input
           type="password"
           name="password"

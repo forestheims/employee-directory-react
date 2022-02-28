@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { useProfile } from '../../context/profilesContext';
@@ -17,13 +18,18 @@ export default function Header() {
   return (
     <header>
       <Link to="/">Home</Link>
-      <Link to="/profile">Profile</Link>
-      <Link to="/profile/add">Add Profile</Link>
-      <Link to="/profile/edit">Edit Profile</Link>
       {user.email ? (
-        <button onClick={handleLogout}>Logout</button>
+        <>
+          <Link to="/profile">Profile</Link>
+          <Link to="/profile/add">Add Profile</Link>
+          <Link to="/profile/edit">Edit Profile</Link>
+          <button onClick={handleLogout}>Logout</button>
+        </>
       ) : (
-        <Link to="/login">Sign In</Link>
+        <>
+          <Link to="/login">Sign In</Link>
+          <Link to="/register">Register</Link>
+        </>
       )}
       <h3>
         {user.email
