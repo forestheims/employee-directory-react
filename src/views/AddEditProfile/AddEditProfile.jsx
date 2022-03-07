@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { useProfile } from '../../context/profilesContext';
 import { createProfile, updateProfile } from '../../services/profiles';
+import styles from './AddEditProfile.css';
 
 export default function AddEditProfile({ isProfile = false }) {
   const [name, setName] = useState('');
@@ -36,7 +37,7 @@ export default function AddEditProfile({ isProfile = false }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.profileForm} onSubmit={handleSubmit}>
         <h1>{isProfile ? 'Edit Profile' : 'Create Profile'}</h1>
         <h2>{user.email}</h2>
         <label>Name:</label>

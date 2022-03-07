@@ -7,38 +7,19 @@ Object {
     <div>
       <header>
         <a
-          href="https://villains.fandom.com/wiki/ACME"
-        >
-          <img
-            alt="GitHub Logo"
-            src="/path/image"
-            style="width: 100px;"
-          />
-        </a>
-        <a
           href="/"
         >
           Home
         </a>
         <a
-          href="/profile"
-        >
-          Profile
-        </a>
-        <a
-          href="/profile/add"
-        >
-          Add Profile
-        </a>
-        <a
-          href="/profile/edit"
-        >
-          Edit Profile
-        </a>
-        <a
           href="/login"
         >
           Sign In
+        </a>
+        <a
+          href="/register"
+        >
+          Register
         </a>
         <h3>
           Welcome. Sign in to access the directory.
@@ -49,38 +30,19 @@ Object {
   "container": <div>
     <header>
       <a
-        href="https://villains.fandom.com/wiki/ACME"
-      >
-        <img
-          alt="GitHub Logo"
-          src="/path/image"
-          style="width: 100px;"
-        />
-      </a>
-      <a
         href="/"
       >
         Home
       </a>
       <a
-        href="/profile"
-      >
-        Profile
-      </a>
-      <a
-        href="/profile/add"
-      >
-        Add Profile
-      </a>
-      <a
-        href="/profile/edit"
-      >
-        Edit Profile
-      </a>
-      <a
         href="/login"
       >
         Sign In
+      </a>
+      <a
+        href="/register"
+      >
+        Register
       </a>
       <h3>
         Welcome. Sign in to access the directory.

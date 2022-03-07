@@ -1,6 +1,6 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import ACMELogo from '../../assets/ACME_Logo.jpg';
 import { useAuth } from '../../context/authContext';
 import { useProfile } from '../../context/profilesContext';
 import { signOutUser } from '../../services/auth';
@@ -17,17 +17,19 @@ export default function Header() {
 
   return (
     <header>
-      <a href="https://villains.fandom.com/wiki/ACME">
-        <img src={ACMELogo} alt="GitHub Logo" style={{ width: 100 }} />
-      </a>
       <Link to="/">Home</Link>
-      <Link to="/profile">Profile</Link>
-      <Link to="/profile/add">Add Profile</Link>
-      <Link to="/profile/edit">Edit Profile</Link>
       {user.email ? (
-        <button onClick={handleLogout}>Logout</button>
+        <>
+          <Link to="/profile">Profile</Link>
+          <Link to="/profile/add">Add Profile</Link>
+          <Link to="/profile/edit">Edit Profile</Link>
+          <button onClick={handleLogout}>Logout</button>
+        </>
       ) : (
-        <Link to="/login">Sign In</Link>
+        <>
+          <Link to="/login">Sign In</Link>
+          <Link to="/register">Register</Link>
+        </>
       )}
       <h3>
         {user.email
